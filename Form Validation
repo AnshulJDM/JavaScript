@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Form Validation</title>
+</head>
+<body>
+  <h2>Simple Form</h2>
+  <form name="myForm" onsubmit="return validateForm();">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
+<script>
+function validateForm() {
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  if (name == "" || email == "" || password == "") {
+    alert("Please fill out all fields.");
+    return false;
+  }
+
+  if (!isValidEmail(email)) {
+    alert("Invalid email address.");
+    return false;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return false;
+  }
+
+  return true;
+}
+
+function isValidEmail(email) {
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+</script>
