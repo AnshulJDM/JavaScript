@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corona API</title>
+</head>
+<body>
+    <h2>Loc : <span id="loc"></span></h2>
+    <h2>Confirmedcaseindian : <span id="confirm1"></span></h2>
+    <h2>discharged : <span id="discharged"></span></h2>
+    <h2>deaths : <span id="deaths"></span></h2>
+    <h2>totalconfirmed : <span id="confirm2"></span></h2>
+
+</body>
+</html>
+<script>
+
+
+    
+
+    fetch("https://api.rootnet.in/covid19-in/stats/latest")
+    .then((res)=>res.json())
+    .then((data)=>{
+        console.log(data)
+        document.getElementById("loc").innerHTML = data.data.regional[0].loc
+        document.getElementById("confirm1").innerHTML = data.data.regional[0].confirmedCasesIndian
+        document.getElementById("discharged").innerHTML = data.data.regional[0].discharged
+        document.getElementById("deaths").innerHTML = data.data.regional[0].deaths
+        document.getElementById("confirm2").innerHTML = data.data.regional[0].totalConfirmed
+    })
+    .catch((arr)=>arr)
+
+</script>
